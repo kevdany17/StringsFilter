@@ -13,8 +13,8 @@ namespace StringFilters
         //Reemplazar Vocales y Espacios
         public static string replaceVocalSpaces(string cadena)
         {
-            string patron = "[\\s]{1,}";// se sustituye por %
-            string patron2 = "[aeiouAEIOUÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙ]{1,}";// Se sustituye por _
+            string patron = "[\\s]{1,}";// se sustituye por '%'
+            string patron2 = "[aeiouAEIOUÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙ]";// Se sustituye por '_'
             Char charRange = '\"'; //Valor a Buscar
             int startIndex = cadena.IndexOf(charRange); //Primera Aparicion
             int endIndex = 0;
@@ -45,7 +45,11 @@ namespace StringFilters
                 }
                 else
                 {
-                    if (arregloCadena[i] == arregloCadena[i + 1])
+                    if (arregloCadena[i].Equals('_')) {
+                      //Si hay 2 vocales seguidas ambas se agregan con el simbolo '_'
+                      result = result + arregloCadena[i].ToString();
+                    }
+                    else if (arregloCadena[i] == arregloCadena[i + 1])
                     {
                         //Saltar Caracter Repetido
                     }
